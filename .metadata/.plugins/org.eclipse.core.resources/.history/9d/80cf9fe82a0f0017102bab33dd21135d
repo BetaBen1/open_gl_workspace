@@ -1,0 +1,117 @@
+package betaben.lwjglprogram;
+
+import static org.lwjgl.glfw.GLFW.*;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWVidMode;
+import static org.lwjgl.opengl.GL11.*;
+
+public class Main {
+
+	public Main(){
+		if(!glfwInit()){
+			System.err.print("Failed to initialize GLFW!");
+			System.exit(1);
+		}
+		
+		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+		
+		long window = glfwCreateWindow(640, 480, "My First LWJGL Program", 0, 0);
+		
+		GLFWVidMode videoMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		glfwSetWindowPos(window, (videoMode.width()-640)/2, (videoMode.height()-480)/2);
+		
+		glfwShowWindow(window);
+		
+		glfwMakeContextCurrent(window);
+		
+		GL.createCapabilities();
+		
+		float xMod = 0;
+		float yMod = 0;
+		
+		float speed = 0.003f;
+		
+		float color_red = 1;
+		float color_blue = 0;
+		
+		while(glfwWindowShouldClose(window) != true){
+			if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GL_TRUE){
+				glfwSetWindowShouldClose(window, true);
+			} 
+			if(glfwGetKey(window, GLFW_KEY_W) == GL_TRUE){
+				yMod+=speed;
+			} 
+			if(glfwGetKey(window, GLFW_KEY_A) == GL_TRUE){
+				xMod-=speed;
+			} 
+			if(glfwGetKey(window, GLFW_KEY_S) == GL_TRUE){
+				yMod-=speed;
+			} 
+			if(glfwGetKey(window, GLFW_KEY_D) == GL_TRUE){
+				xMod+=speed;
+			} 
+			if(glfwGetMouseButton(window, 0) == GL_TRUE){
+				color_red = 0.25f;
+				color_blue = 1;
+			} else {
+				color_red = 1;
+				color_blue = 0.25f;
+			}
+			
+			glfwPollEvents();
+			glClear(GL_COLOR_BUFFER_BIT);
+			
+			glBegin(GL_QUADS);
+//				glColor4f(color_red,0,color_blue,0);
+//				glVertex2f(-0.5f+xMod, 0.5f+yMod);
+//				
+//				glVertex2f(0.5f+xMod, 0.5f+yMod);
+//				
+//				glVertex2f(0.5f+xMod, -0.5f+yMod);
+//				
+//				glVertex2f(-0.5f+xMod, -0.5f+yMod);
+//				
+			
+				glColor4f(color_red,0,color_blue,0);
+				glVertex2f(-0.5f-yMod, 0.5f+yMod);
+			
+				glVertex2f(0.5f+yMod, 0.5f+yMod);
+			
+				glVertex2f(0.5f+yMod, -0.5f-yMod);
+			
+				glVertex2f(-0.5f-yMod, -0.5f-yMod);
+			
+				
+				glColor4f(0,0,1,0);
+				glVertex2f(0.5f+yMod, 0.5f+yMod);
+			
+				glVertex2f(1f, 1f);
+			
+				glVertex2f(1f, -1f);
+			
+				glVertex2f(0.5f+yMod, -0.5f-yMod);
+				
+				
+				glColor4f(0,0,1,0);
+				glVertex2f(-1, 1f);
+			
+				glVertex2f(-0.5f-yMod, 0.5f+yMod);
+			
+				glVertex2f(-0.5f-yMod, -0.5f-yMod);
+			
+				glVertex2f(-1f, -1f);
+			
+				glEnd();
+			
+			glfwSwapBuffers(window);
+		}
+		
+		glfwTerminate();
+	}
+	
+	public static void main(String[] args) {
+		new Main();
+	}
+	
+}

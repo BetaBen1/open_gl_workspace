@@ -1,0 +1,28 @@
+package betaben.lwjglprogram;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Texture {
+
+	private int id;
+	private int width;
+	private int height;
+	
+	public Texture(String filename){
+		BufferedImage bi;
+		try{
+			bi = ImageIO.read(new File(filename));
+			width = bi.getWidth();
+			height = bi.getHeight();
+			
+			int[] pixels_raw = new int[width*height];
+		} catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+}
