@@ -21,7 +21,7 @@ public class Main {
 			System.err.print("Failed to initialize GLFW!");
 			System.exit(1);
 		}
-		
+
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 		
 		long window = glfwCreateWindow(640, 480, "My First LWJGL Program", 0, 0);
@@ -36,6 +36,31 @@ public class Main {
 		GL.createCapabilities();
 		
 		glEnable(GL_TEXTURE_2D);
+		
+		float[] vertices = new float[]{
+				-0.5f, 0.5f, 0,  //Top Left
+				0.5f, 0.5f, 0,   //Top Right
+				0.5f, -0.5f, 0,  //Bottom Right
+				-0.5f, -0.5f, 0, //Bottom Left
+				
+		};
+		
+		float[] texture = new float[]{
+				0,0,
+				1,0,
+				1,1,
+				0,1,
+
+		};
+		
+		int[] indices = new int[] {
+				0, 1, 2,
+				2, 3, 0
+		};
+		
+		Model model = new Model(vertices, texture, indices);
+		
+		Shader shader = new Shader("shader");
 		
 		Texture tex = new Texture("./res/texture.png");
 		
@@ -67,7 +92,12 @@ public class Main {
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
-			tex.bind();
+			tex.bind(0);
+			
+			shader.bind();
+			shader.setUniform("sampler", 0);
+			
+			model.render();
 			
 //			glBegin(GL_QUADS);
 //				
@@ -136,85 +166,4 @@ public class Main {
 			glVertex2f(-1, -1);
 	}
 	
-	public void w(){
-		//Middle Shape
-		glColor4f(1,0,0,0);
-		glVertex2f(-0.5f-yMod, 0.5f+yMod);
-		glVertex2f(0.5f+yMod, 0.5f+yMod);
-		glVertex2f(0.5f+yMod, -0.5f-yMod);
-		glVertex2f(-0.5f-yMod, -0.5f-yMod);
-		
-		//Left Shape
-		glColor4f(0,0,1,0);
-		glVertex2f(-1, 1f);
-		glVertex2f(-0.5f-yMod, 0.5f+yMod);
-		glVertex2f(-0.5f-yMod, -0.5f-yMod);
-		glVertex2f(-1f, -1f);
-	
-		//Top Shape
-		glColor4f(0,0,.5f,0);
-		glVertex2f(-1, 1);
-		glVertex2f(1, 1);
-		glVertex2f(0.5f+yMod, 0.5f+yMod);
-		glVertex2f(-0.5f-yMod, 0.5f+yMod);
-		
-		//Right Shape
-		glColor4f(0,0,1,0);
-		glVertex2f(0.5f+yMod, 0.5f+yMod);
-		glVertex2f(1, 1);
-		glVertex2f(1, -1);
-		glVertex2f(0.5f+yMod, -0.5f-yMod);
-		
-		//Bottom Shape
-		glColor4f(0,0,.5f,0);
-		glVertex2f(-0.5f-yMod, -0.5f-yMod);
-		glVertex2f(0.5f+yMod, -0.5f-yMod);
-		glVertex2f(1, -1);
-		glVertex2f(-1, -1);
-	}
-	
-	public void a(){
-		//Middle Shape
-		glColor4f(1,0,0,0);
-		glVertex2f(-0.5f+xMod, 0.5f);
-		glVertex2f(0.5f+xMod, 0.5f);
-		glVertex2f(0.5f+xMod, -0.5f);
-		glVertex2f(-0.5f+xMod, -0.5f);
-		
-		//Left Shape
-		glColor4f(0,0,1,0);
-		glVertex2f(-1, 1f);
-		glVertex2f(-0.5f+xMod, 0.5f);
-		glVertex2f(-0.5f+xMod, -0.5f);
-		glVertex2f(-1f, -1f);
-	
-		//Top Shape
-		glColor4f(0,0,.5f,0);
-		glVertex2f(-1, 1);
-		glVertex2f(1, 1);
-		glVertex2f(0.5f+xMod, 0.5f);
-		glVertex2f(-0.5f+xMod, 0.5f);
-		
-		//Right Shape
-		glColor4f(0,0,1,0);
-		glVertex2f(0.5f+xMod, 0.5f);
-		glVertex2f(1, 1);
-		glVertex2f(1, -1);
-		glVertex2f(0.5f+xMod, -0.5f);
-		
-		//Bottom Shape
-		glColor4f(0,0,.5f,0);
-		glVertex2f(-0.5f+xMod, -0.5f);
-		glVertex2f(0.5f+xMod, -0.5f);
-		glVertex2f(1, -1);
-		glVertex2f(-1, -1);
-	}
-	
-	public void s(){
-		
-	}
-	
-	public void d(){
-		
-	}
 }
