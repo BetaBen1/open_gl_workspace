@@ -1,0 +1,19 @@
+package betaben.lwjglprogram;
+
+import org.lwjgl.opengl.GL11.*;
+import org.lwjgl.opengl.GL15.*;
+
+public class Model {
+
+	private int draw_count;
+	private int v_id;
+
+	public Model(float[] vertices){
+		
+		draw_count = vertices.length;
+		v_id = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, v_id);
+		
+	}
+	
+}

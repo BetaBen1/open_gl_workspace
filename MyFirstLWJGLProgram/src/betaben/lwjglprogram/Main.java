@@ -69,21 +69,25 @@ public class Main {
 			
 			tex.bind();
 			
-			glBegin(GL_QUADS);
-				
-				glTexCoord2f(0, 0);
-				glVertex2f(-0.5f, 0.5f);
-				
-				glTexCoord2f(1, 0);
-				glVertex2f(0.5f, 0.5f);
-				
-				glTexCoord2f(1, 1);
-				glVertex2f(0.5f, -0.5f);
-				
-				glTexCoord2f(0, 1);
-				glVertex2f(-0.5f, -0.5f);
+//			glBegin(GL_QUADS);
+//				
+//				//move();
+//			
+//				glTexCoord2f(0, 0);
+//				glVertex2f(-0.5f, 0.5f);
+//				
+//				glTexCoord2f(1, 0);
+//				glVertex2f(0.5f, 0.5f);
+//				
+//				glTexCoord2f(1, 1);
+//				glVertex2f(0.5f, -0.5f);
+//				
+//				glTexCoord2f(0, 1);
+//				glVertex2f(-0.5f, -0.5f);
+//			
+//			glEnd();
 			
-			glEnd();
+			
 			
 			glfwSwapBuffers(window);
 		}
@@ -98,36 +102,36 @@ public class Main {
 	public void move(){
 			//Middle Shape
 			glColor4f(1,0,0,0);
-			glVertex2f(-0.5f-yMod, 0.5f+yMod);
-			glVertex2f(0.5f+yMod, 0.5f+yMod);
-			glVertex2f(0.5f+yMod, -0.5f-yMod);
-			glVertex2f(-0.5f-yMod, -0.5f-yMod);
+			glVertex2f(-0.5f-yMod+xMod, 0.5f+yMod);
+			glVertex2f(0.5f+yMod+xMod, 0.5f+yMod);
+			glVertex2f(0.5f+yMod+xMod, -0.5f-yMod);
+			glVertex2f(-0.5f-yMod+xMod, -0.5f-yMod);
 				
 			//Left Shape
 			glColor4f(0,0,1,0);
 			glVertex2f(-1, 1f);
-			glVertex2f(-0.5f-yMod, 0.5f+yMod);
-			glVertex2f(-0.5f-yMod, -0.5f-yMod);
+			glVertex2f(-0.5f-yMod+xMod, 0.5f+yMod);
+			glVertex2f(-0.5f-yMod+xMod, -0.5f-yMod);
 			glVertex2f(-1f, -1f);
 			
 			//Top Shape
 			glColor4f(0,0,.5f,0);
 			glVertex2f(-1, 1);
 			glVertex2f(1, 1);
-			glVertex2f(0.5f+yMod, 0.5f+yMod);
-			glVertex2f(-0.5f-yMod, 0.5f+yMod);
+			glVertex2f(0.5f+yMod+xMod, 0.5f+yMod);
+			glVertex2f(-0.5f-yMod+xMod, 0.5f+yMod);
 				
 			//Right Shape
 			glColor4f(0,0,1,0);
-			glVertex2f(0.5f+yMod, 0.5f+yMod);
+			glVertex2f(0.5f+yMod+xMod, 0.5f+yMod);
 			glVertex2f(1, 1);
 			glVertex2f(1, -1);
-			glVertex2f(0.5f+yMod, -0.5f-yMod);
+			glVertex2f(0.5f+yMod+xMod, -0.5f-yMod);
 				
 			//Bottom Shape
 			glColor4f(0,0,.5f,0);
-			glVertex2f(-0.5f-yMod, -0.5f-yMod);
-			glVertex2f(0.5f+yMod, -0.5f-yMod);
+			glVertex2f(-0.5f-yMod+xMod, -0.5f-yMod);
+			glVertex2f(0.5f+yMod+xMod, -0.5f-yMod);
 			glVertex2f(1, -1);
 			glVertex2f(-1, -1);
 	}
