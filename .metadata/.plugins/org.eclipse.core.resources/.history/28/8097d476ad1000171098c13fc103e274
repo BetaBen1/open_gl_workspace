@@ -1,8 +1,0 @@
-package betaben.lwjglprogram;
-
-public class Model {
-
-	private int draw_count;
-	private int v_id;
-	
-}

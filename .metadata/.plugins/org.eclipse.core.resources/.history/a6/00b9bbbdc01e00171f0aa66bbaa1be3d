@@ -92,16 +92,16 @@ public class Main {
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 			
-			tex.bind(0);
+//			tex.bind(0);
+//			
+//			shader.bind();
+//			shader.setUniform("sampler", 0);
+//			
+//			model.render();
 			
-			shader.bind();
-			shader.setUniform("sampler", 0);
-			
-			model.render();
-			
-//			glBegin(GL_QUADS);
+			glBegin(GL_QUADS);
 //				
-//				move();
+				move();
 //			
 //				glTexCoord2f(0, 0);
 //				glVertex2f(-0.5f, 0.5f);
@@ -115,7 +115,7 @@ public class Main {
 //				glTexCoord2f(0, 1);
 //				glVertex2f(-0.5f, -0.5f);
 //			
-//			glEnd();
+			glEnd();
 			
 			
 			
